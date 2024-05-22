@@ -39,11 +39,19 @@ class VulnerableSpeciesDetailBody extends StatelessWidget {
             back: true,
           ),
           const SizedBox(height: 4),
-          if (state?.name == null)
+          if (state != null && state.name == null)
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Center(
-                child: Text('Non sono presenti dati specifici su questa specie'),
+                child:
+                    Text('Non sono presenti dati specifici su questa specie'),
+              ),
+            ),
+          if (state == null)
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Center(
+                child: CircularProgressIndicator(),
               ),
             )
           else
@@ -51,55 +59,55 @@ class VulnerableSpeciesDetailBody extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                 children: [
-                  if (state?.name.isValid ?? false)
+                  if (state.name.isValid)
                     SpeciesTile(
                       title: 'Nome',
-                      subtitle: state!.name!,
+                      subtitle: state.name!,
                     ),
-                  if (state?.taxonomicnotes.isValid ?? false)
+                  if (state.taxonomicnotes.isValid)
                     SpeciesTile(
                       title: 'Tassonomia',
-                      subtitle: state!.taxonomicnotes!,
+                      subtitle: state.taxonomicnotes!,
                     ),
-                  if (state?.rationale.isValid ?? false)
+                  if (state.rationale.isValid)
                     SpeciesTile(
                       title: 'Motivazione',
-                      subtitle: state!.rationale!,
+                      subtitle: state.rationale!,
                     ),
-                  if (state?.geographicrange.isValid ?? false)
+                  if (state.geographicrange.isValid)
                     SpeciesTile(
                       title: 'Area Geografica',
-                      subtitle: state!.geographicrange!,
+                      subtitle: state.geographicrange!,
                     ),
-                  if (state?.population.isValid ?? false)
+                  if (state.population.isValid)
                     SpeciesTile(
                       title: 'Popolazione',
-                      subtitle: state!.population!,
+                      subtitle: state.population!,
                     ),
-                  if (state?.populationtrend.isValid ?? false)
+                  if (state.populationtrend.isValid)
                     SpeciesTile(
                       title: 'Trend popolazione',
-                      subtitle: state!.populationtrend!,
+                      subtitle: state.populationtrend!,
                     ),
-                  if (state?.habitat.isValid ?? false)
+                  if (state.habitat.isValid)
                     SpeciesTile(
                       title: 'Habitat',
-                      subtitle: state!.habitat!,
+                      subtitle: state.habitat!,
                     ),
-                  if (state?.threats.isValid ?? false)
+                  if (state.threats.isValid)
                     SpeciesTile(
                       title: 'Minacce principali',
-                      subtitle: state!.threats!,
+                      subtitle: state.threats!,
                     ),
-                  if (state?.conservationmeasures.isValid ?? false)
+                  if (state.conservationmeasures.isValid)
                     SpeciesTile(
                       title: 'Misure di conservazione',
-                      subtitle: state!.conservationmeasures!,
+                      subtitle: state.conservationmeasures!,
                     ),
-                  if (state?.usetrade.isValid ?? false)
+                  if (state.usetrade.isValid)
                     SpeciesTile(
                       title: 'Uso commmerciale',
-                      subtitle: state!.usetrade!,
+                      subtitle: state.usetrade!,
                     ),
                 ],
               ),
