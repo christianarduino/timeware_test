@@ -5,6 +5,8 @@ import 'package:timeware_test/src/features/vulnerable_species/data/remote/vulner
 import 'package:timeware_test/src/features/vulnerable_species/data/remote/vulnerable_species_remote_data_source_impl.dart';
 import 'package:timeware_test/src/features/vulnerable_species/data/repositories/vulnerable_species_repository_impl.dart';
 import 'package:timeware_test/src/features/vulnerable_species/domain/repositories/vulnerable_species_repository.dart';
+import 'package:timeware_test/src/features/vulnerable_species/presentation/view_model/vulnerable_species_detail_view_model.dart';
+import 'package:timeware_test/src/features/vulnerable_species/presentation/view_model/vulnerable_species_view_model.dart';
 import 'package:timeware_test/src/shared/dio/interceptors.dart';
 import 'package:timeware_test/src/shared/user/data/local/user_local_data_source.dart';
 import 'package:timeware_test/src/shared/user/data/local/user_local_data_source_impl.dart';
@@ -45,6 +47,16 @@ void _initVulnerableSpecies() {
   injector.registerSingleton<VulnerableSpeciesRepository>(
     VulnerableSpeciesRepositoryImpl(
       remoteDataSource: injector.get<VulnerableSpeciesRemoteDataSource>(),
+    ),
+  );
+  injector.registerFactory<VulnerableSpeciesViewModel>(
+    () => VulnerableSpeciesViewModel(
+      repository: injector.get<VulnerableSpeciesRepository>(),
+    ),
+  );
+  injector.registerFactory<VulnerableSpeciesDetailViewModel>(
+    () => VulnerableSpeciesDetailViewModel(
+      repository: injector.get<VulnerableSpeciesRepository>(),
     ),
   );
 }
