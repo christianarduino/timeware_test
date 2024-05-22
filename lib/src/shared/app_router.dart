@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:timeware_test/src/features/login/presentation/pages/login_page.dart';
+import 'package:timeware_test/src/features/vulnerable_species/presentation/pages/vulnerable_species_detail_page.dart';
+import 'package:timeware_test/src/features/vulnerable_species/presentation/pages/vulnerable_species_page.dart';
 import 'package:timeware_test/src/shared/user/presentation/view_model/user_view_model.dart';
 
 enum AppRoute {
@@ -33,6 +35,21 @@ final goRouter = GoRouter(
       path: '/login',
       name: AppRoute.login.name,
       builder: (_, __) => const LoginPage(),
+    ),
+    GoRoute(
+      path: '/vulnerable_species',
+      name: AppRoute.vulnerableSpecies.name,
+      builder: (_, __) => const VulnerableSpeciesPage(),
+      routes: [
+        GoRoute(
+          path: 'vulnerable_species_detail/:name',
+          name: AppRoute.vulnerableSpeciesDetail.name,
+          builder: (_, state) {
+            final speciesName = state.pathParameters['name'];
+            return VulnerableSpeciesDetailPage(speciesName: speciesName ?? '');
+          },
+        ),
+      ],
     ),
   ],
 );
